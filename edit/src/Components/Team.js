@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 
-function Team(props) {
+function Events(props) {
   const [isEditing, setIsEditing] = useState(false);
   const [input, setInput] = useState({
-    name: props.member.name,
-    email: props.member.email,
-    role: props.member.role,
-    id: props.member.id
+    name: props.event.event,
+    email: props.event.date,
+    role: props.event.location,
+    id: props.event.id
   });
   const handleInput = e => {
     setInput({ ...input, [e.target.name]: e.target.value });
@@ -18,7 +18,7 @@ function Team(props) {
 
   const updateHandler = e => {
     e.preventDefault();
-    props.updateMember(input);
+    props.updateEvent(input);
     setIsEditing(!isEditing);
   };
 
@@ -27,39 +27,39 @@ function Team(props) {
   if (isEditing) {
     return (
       <div>
-        <h1>Edit Member</h1>
+        <h1>Edit Event</h1>
         <form onSubmit={updateHandler}>
           <div>
-            <label htmlFor="name">
-              Name:{" "}
+            <label htmlFor="event">
+             Event: {" "}
               <input
                 type="text"
-                value={input.name}
-                name="name"
+                value={input.event}
+                event="event"
                 onChange={handleInput}
               />
             </label>
-            <label htmlFor="email">
-              Email:{" "}
+            <label htmlFor="date">
+              Date:{" "}
               <input
                 type="text"
-                value={input.email}
-                name="email"
+                value={input.date}
+                name="date"
                 onChange={handleInput}
               />
             </label>
-            <label htmlFor="role">
-              Role:{" "}
+            <label htmlFor="location">
+              Location:{" "}
               <input
                 type="text"
                 value={input.role}
-                name="role"
+                name="location"
                 onChange={handleInput}
               />
             </label>
           </div>
 
-          <button>Update Member</button>
+          <button>Update Event</button>
         </form>
         <button onClick={handleEdit}>go back</button>
       </div>
@@ -67,15 +67,15 @@ function Team(props) {
   }
   return (
     <div>
-      <h2>Name:</h2>
-      <p>{props.member.name}</p>
-      <h2>Email:</h2>
-      <p>{props.member.email}</p>
-      <h2>Role:</h2>
-      <p>{props.member.role}</p>
+      <h2>Event:</h2>
+      <p>{props.event.event}</p>
+      <h2>Date:</h2>
+      <p>{props.event.date}</p>
+      <h2>Location:</h2>
+      <p>{props.event.location}</p>
       <button onClick={handleEdit}>Edit</button>
     </div>
   );
 }
 
-export default Team;
+export default Events;
